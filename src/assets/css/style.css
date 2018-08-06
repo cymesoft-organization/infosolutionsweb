@@ -2768,7 +2768,7 @@ textarea, select {
 .thinking-section .thinking-content p {
   color: #6a6a6a;
 }
-.thinking-section{background-color: #f8f8f8; padding-bottom:50px }
+.thinking-section{background-color: #f8f8f8; padding-bottom:90px }
   @media only screen and (max-width: 991px) {
     .thinking-section .thinking-content p {
       margin-bottom: 30px; } }
@@ -3418,7 +3418,7 @@ section.pricing-section.section-padding{padding-top:50px; padding-bottom:20px;}
     left: 0;
     top: 0;
     width: 100%;
-    height:650px;
+    height:100%;
     background-color: #f3f3f3; }
   .contact-section .contact-wrapper {
     padding: 50px 50px;
@@ -9283,4 +9283,14 @@ background: -ms-linear-gradient(left, rgba(169,12,12,1) 0%, rgba(189,0,0,1) 44%,
 background: linear-gradient(to right, rgba(169,12,12,1) 0%, rgba(189,0,0,1) 44%, rgba(153,5,5,1) 88%, rgba(138,0,0,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90c0c', endColorstr='#8a0000', GradientType=1 );
 color:#fff;    
+}
+a.link + a.link{border:none;}
+a.link:hover{color:#48c7ec}
+a.link {
+  border-right: 1px solid #fff;
+  padding-right: 14px;
+  margin-right: 5px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
 }

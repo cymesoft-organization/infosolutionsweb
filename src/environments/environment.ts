@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/api/v1/',
+  // apiUrl: 'http://localhost/api/v1/',
+  apiUrl: 'http://www.infosolutionsweb.com/api/v1/',
   siteUrl: 'http://www.infosolutionsweb.com/#/',
 };

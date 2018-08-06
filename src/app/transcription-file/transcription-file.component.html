@@ -11,9 +11,9 @@
 
 <!-- start tab #1 (click)="AddFiles()" -->
 
-<label class="j-tabs-label" for="tab1"  (click)="AddFiles()" title="Add Files">
+<button class="j-tabs-label" for="tab1"  (click)="AddFiles()" title="Add Files">
 <span> Step 1 <br/> Add Files</span>
-</label>
+</button>
 <!-- end tab #1 -->
 
 <!-- start tab #2 -->
@@ -165,12 +165,13 @@
             <td>{{index + 1}}</td>
             <td style="width:40%">{{item.upload_name}}</td>
             <td style="width:30%"><div class="unit">
-              
-              <div class="input" >
+              <div class="input select" >
+                  <label class="input select">
                 <select #service_id="ngModel" name="service_id{{index}}" [(ngModel)]= "item.service_id" #input (change)="calculateCost($event.target.value, 'service_id', item.id, item.service_id)">
                   <option *ngFor="let ser of services.services" [value]="ser.service_id">{{ser.service_name}}</option>
-                  
               </select>
+              <i></i>
+            </label>
               </div>
               <div *ngIf="item.service_name != 'translation'">
               <label class="checkbox">
