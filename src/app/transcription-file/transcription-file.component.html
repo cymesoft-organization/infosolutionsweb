@@ -11,7 +11,7 @@
 
 <!-- start tab #1 (click)="AddFiles()" -->
 
-<button class="j-tabs-label" for="tab1"  (click)="AddFiles()" title="Add Files">
+<button class="j-tabs-label active m-r-10" for="tab1"  (click)="AddFiles()" title="Add Files">
 <span> Step 1 <br/> Add Files</span>
 </button>
 <!-- end tab #1 -->
@@ -60,25 +60,25 @@
       <!-- start keep logged -->
       <div class="unit">
         <div class="input">
-            <textarea  [(ngModel)]="disc.description" #description="ngModel" placeholder="You can include any notes which needs to be passed onto the transcribers. You may want to include the title of your podcast, useful websites, unusual words, keywords and acronyms, and the names of the speakers." name="description"></textarea>
+            <textarea class="h-135"  [(ngModel)]="disc.description" #description="ngModel" placeholder="You can include any notes which needs to be passed onto the transcribers. You may want to include the title of your podcast, useful websites, unusual words, keywords and acronyms, and the names of the speakers." name="description"></textarea>
            <input type="hidden" name="id" [(ngModel)] = "disc.id" />
           </div>
         
       </div>
       <!-- end keep logged -->    
       </div>
-      <div class="span8 unit">
-      <div id="exTab3" >	
-        <ul  class="nav nav-pills">
+      <div class="span8 unit pricing-section userTab">
+      <div id="exTab3" class="priceing-wrapper">	
+        <ul  class="nav nav-tabs">
               <li class="active">
-                <a  href="#1b" data-toggle="tab">Upload File</a>
+                <a  href="#1b" data-toggle="tab"><i class="fa fa-cloud-upload"></i> Upload File</a>
               </li>
-              <li><a href="#2b" data-toggle="tab">URL</a>
+              <li><a href="#2b" data-toggle="tab"><i class="fa fa-link"></i> URL</a>
               </li>
-              <!--<li><a href="#3b" data-toggle="tab">Applying clearfix</a>
+              <li><a href="#3b" data-toggle="tab">Dropbox</a>
               </li>
-              <li><a href="#4a" data-toggle="tab">Background color</a>
-              </li>-->
+              <li><a href="#4a" data-toggle="tab">Google Drive</a>
+              </li>
             </ul>
       
             <div class="tab-content clearfix">
@@ -126,9 +126,13 @@
               <!-- end upload section -->
               </div>
                 <div class="tab-pane" id="2b">
+                  <div class="j-row">
+                    <div class="span10 unit">
                   <div class="input">
                     <input type="text"  name="url" [(ngModel)]="disc.url" #url="ngModel" placeholder="http://" />
-                    <button  class="primary-btn" (click)="addUrl(disc)" type="submit">ADD URL</button>
+                  </div>
+                  </div>
+                  <div class="span2 unit"><button  class="primary-btn" (click)="addUrl(disc)" type="submit">ADD URL</button></div>
                   </div>
                 </div>
                 <!--<div class="tab-pane" id="3b">
@@ -204,13 +208,13 @@
               <div *ngIf = "item.duration == 1" style="color:brown">
               Update duration
             </div></td>
-            <td style="width:5%">{{item.cost | currency }}</td>
-            <td style="width:5%"><a (click)="fileDelete(item.id, index)" >Delete</a></td>
+            <td style="width:10%">{{item.cost | currency }}</td>
+            <td><a (click)="fileDelete(item.id, index)" >Delete</a></td>
           </tr>
-          <tr>
-            <td colspan="3">TOTAL</td>
-            <td>{{tot_duration}}</td>
-            <td>{{tot_cost | currency}}</td>
+          <tr class="Total">
+            <td colspan="3"><strong>TOTAL</strong> </td>
+            <td><strong>{{tot_duration}}</strong> </td>
+            <td><strong>{{tot_cost | currency}}</strong></td>
             <td><button  class="primary-btn" (click)="checkout(uploadedFiles)" type="submit">CHECKOUT</button></td>
           </tr>
         </table>
@@ -274,7 +278,7 @@
     <span>Billing Details</span>
   </div>
 <div class="j-row">
- <div class="span8 unit">
+ <div class="span7 unit">
   <div class="j-row">
     <div class="span6 unit">
         <div class="input">
@@ -394,8 +398,8 @@
 
 <!-- Order Summary -->
 
-    <div class="span4 unit">
-     <h3>Order Summary</h3>
+    <div class="span5 unit">
+     <h3 class="subtile">Order Summary</h3>
 
      <div class="j-row">
       <div class="span12 unit">
@@ -410,9 +414,9 @@
             <td>{{item.cost | currency}}</td>
             <td><a (click)="orderDelete(item.order_id, index)">Delete</a></td>
           </tr>
-          <tr>
-            <td>Total</td>
-            <td>{{order_tot_cost | currency}}</td>
+          <tr class="Total">
+            <td><strong>Total</strong></td>
+            <td><strong>{{order_tot_cost | currency}}</strong></td>
             <td></td>
             </tr>
         </table>

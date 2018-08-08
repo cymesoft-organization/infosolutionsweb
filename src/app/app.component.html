@@ -87,13 +87,13 @@
     <li routerLinkActive='active' class="dropdown" *ngIf="logouts()">
         <a class="dropdown-toggle" data-toggle="dropdown"><img src="assets/images/user-2.png" alt=""> MyAccount <i class="fa fa-angle-down" aria-hidden="true"></i></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li><a routerLink="/user-dashboard"  >Dashboard</a></li>
-          <li><a (click)="logout()" >Logout</a></li>
+          <li><a routerLink="/user-dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li><a (click)="logout()" ><i class="fa fa-power-off"></i> Logout</a></li>
         </ul>
     </li>
     
     <li>
-      <div class="cart cart-wrapper inline-block"><a routerLink="/payment-list"> <span class="cart-icon"><i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i></span> </a></div>
+      <div class="cart cart-wrapper inline-block"><a routerLink="/payment-list"> <span class="cart-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i> cart (0)</span> </a></div>
     </li>
 </ul>
 

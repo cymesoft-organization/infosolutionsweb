@@ -26,8 +26,8 @@
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	box-sizing:border-box;
-	color:rgba(0,0,0,.54);
-	font-size:16px;
+	color:rgba(0,0,0,.75);
+	font-size:14px;
 	line-height:1;
 	position:relative;
 }
@@ -445,8 +445,8 @@
 	color:rgba(0,0,0,.87);
 	display:block;
 	font-family:inherit;
-	font-size:16px;
-	height:48px;
+	font-size:14px;
+	height:42px;line-height: normal;
 	padding:10px 15px;
 	width:100%;
 	outline:none;
@@ -477,7 +477,7 @@
 .j-forms input[type="url"]:focus,
 .j-forms textarea:focus,
 .j-forms select:focus { border:2px solid rgba(48,63,159,.9); }
-
+.j-forms .input textarea.h-135{height: 135px;}
 .j-forms .input textarea {
 	height:112px;
 	overflow:auto;
@@ -520,15 +520,15 @@
 .j-forms .multiple-select select { height:auto; }
 
 .j-forms .select i {
-	background:#fff;
+	/* background:#fff;
 	-webkit-box-shadow:0 0 0 11px #fff;
 	-moz-box-shadow:0 0 0 11px #fff;
 	-o-box-shadow:0 0 0 11px #fff;
-	box-shadow:0 0 0 11px #fff;
+	box-shadow:0 0 0 11px #fff; */
 	height:20px;
 	position:absolute;
 	pointer-events:none;
-	top:14px;
+	top:10px;
 	right:14px;
 	width:14px;
 }
@@ -2138,15 +2138,15 @@
 
 .j-tabs-container .j-tabs-label {
 	background:#f9fafd;
-	border-top:1px solid #48c7ec;
-	-webkit-border-radius:0;
+	border-top:1px solid #48c7ec !important;
+	-webkit-border-radius:0;border: none;
 	-moz-border-radius:0;
 	-o-border-radius:0;
 	border-radius:0;
 	display:inline-block;
 	margin:0 0 -3px;
-	font-size:14px;
-	padding:10px 25px;
+	font-size:14px;min-width:200px;
+	padding:6px 25px;
 	-webkit-box-shadow:0 2px 2px rgba(0,0,0,.6);
 	-moz-box-shadow:0 2px 2px rgba(0,0,0,.6);
 	-o-box-shadow:0 2px 2px rgba(0,0,0,.6);
@@ -2449,3 +2449,14 @@
 
 .j-forms .ms-drop .ms-no-results { display:none; }
 .bg-white{background: #eee;}
+.cart-icon i{font-size:19px;}
+.cart-icon .count{background: #0288d1;padding: 10px; position: absolute;}
+.pricing-section.userTab .priceing-wrapper{text-align: left;}
+.pricing-section.userTab .priceing-wrapper .nav-tabs{margin-bottom:10px;}
+.pricing-section.userTab .priceing-wrapper .nav-tabs li{font-size: 14px;border-right: 1px solid #48c7ec}
+.pricing-section.userTab .priceing-wrapper .nav-tabs li a{padding:8px 40px;text-align:center;min-width: 183px;}
+.j-forms .Total .primary-btn{margin: 0px;}
+.j-forms .Total{border-bottom: 1px solid #ddd;}
+.j-forms .Total td{line-height:42px;}
+.j-forms .Total td *{line-height: normal;}
+.m-r-10{margin-right: 8px !important;}
