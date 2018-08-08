@@ -9,3 +9,4 @@ export const environment = {
   apiUrl: 'http://www.infosolutionsweb.com/api/v1/',
   siteUrl: 'http://www.infosolutionsweb.com/#/',
 };
+

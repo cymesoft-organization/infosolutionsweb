@@ -26,6 +26,8 @@ import { TranscriptionFileComponent } from '../transcription-file/transcription-
 
 import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
 import { PaymentListComponent } from '../payment-list/payment-list.component';
+import { FreeTrailComponent } from '../free-trail/free-trail.component';
+import { OrderListComponent} from '../order-list/order-list.component';
 
 
 const routes: Routes = [
@@ -50,6 +52,8 @@ const routes: Routes = [
   { path: 'transcription-file/:sid/:sname', component: TranscriptionFileComponent, pathMatch: 'full'},
   { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard]},
   { path: 'payment-list', component: PaymentListComponent, canActivate: [AuthGuard]},
+  { path: 'free-trail', component: FreeTrailComponent, pathMatch: 'full'},
+  { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard]}
   
   
 ];

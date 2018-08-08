@@ -41,6 +41,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { TranscriptionFileComponent } from './transcription-file/transcription-file.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+import { FreeTrailComponent } from './free-trail/free-trail.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
     ResetPasswordComponent,
     TranscriptionFileComponent,
     UserDashboardComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    FreeTrailComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
