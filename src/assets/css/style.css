@@ -3413,6 +3413,12 @@ section.pricing-section.section-padding{padding-top:50px; padding-bottom:20px;}
 .contact-section {
   position: relative; }
   .contact-section.login { padding-top:150px; padding-bottom:20px}
+  .contact-section.freeTrail::before {background:none;}
+  .contact-section.freeTrail .submitBtn{min-width:120px;}
+  .contact-section.freeTrail .contact-wrapper {
+    padding: 80px 70px;
+    box-shadow: 0 0 15px #d6d5d5;
+}
   .contact-section::before {
     content: "";
     position: absolute;
@@ -6679,6 +6685,9 @@ section.pricing-section.section-padding{padding-top:50px; padding-bottom:20px;}
 /* =========================================================
         SubPage-STYLE 
 ============================================================ */
+.header-title.freeTrail {
+  background: url(../images/services/free-trial.jpg) no-repeat top center;
+  background-size: cover;}
 .subPage.servicePage.education .header-title {
   background: url(../images/services/education.jpg) no-repeat top center;
   background-size: cover;}
