@@ -33,7 +33,7 @@
 <div class="span8 unit">
 <div class="j-row">
   <div class="span6 unit">
-First Name : {{firstName}}
+First Name : <span *ngIf="!firstName">--</span><span >{{firstName.length}}dd</span>
   </div>
   <div class="span6 unit">
 Last Name : {{lastName}}

@@ -57,8 +57,15 @@ export class TranscriptionFileComponent implements OnInit {
   ngOnInit() {
     
     this.route.params.subscribe(params => {
-      this.sid = params.sid;
-      this.sname = params.sname;
+      console.log(params.sid);
+      console.log(params.sname);
+      if(params.sid == undefined && params.sname== undefined){
+      this.sid = 1;
+      this.sname ='general';
+      }else{
+        this.sid = params.sid;
+        this.sname = params.sname;
+      }
 
     });
     

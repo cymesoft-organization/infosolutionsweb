@@ -99,7 +99,9 @@ export class PaymentListComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.getOrderList();    
+    
+    this.getOrderList();
+       
     if (!this.addScript) {      
       this.addPaypalScript().then(() => {       
         paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
@@ -116,28 +118,37 @@ export class PaymentListComponent implements OnInit {
   get coupon_code() { return this.billingForm.get('coupon_code'); }  
    //getOrderList
    getOrderList(){
-	  this.session_id = this.ApiService.getLocalSession('current_session_id');	  
+    this.session_id = this.ApiService.getLocalSession('current_session_id');
+    if(this.session_id){  
 	  console.log('test-->'+this.session_id);	  
     this.ApiService.getOrderList(JSON.parse(this.ApiService.getLocalSession('currentUser')),this.session_id)
     .subscribe(
-    data => {      	  
-	  this.address  = data['address'];
-	  this.firstName = this.address['first_name'];
-	  this.lastName = this.address['last_name'];
-	  this.sAddress = this.address['street_address'];
-	  this.city = this.address['city'];
-	  this.state = this.address['state'];
-	  this.country = this.address['country'];
-	  this.zipcode = this.address['zip'];
-	  this.phone = this.address['phone'];	  
-    this.orderFiles = data;
-    this.order_tot_duration = data['tot_duration'];
-    this.order_tot_cost     = data['tot_cost'];
-      
+    data => {
+    if(data['files'].length >0){        	  
+      this.address  = data['address'];
+      console.log(data);
+    /* this.firstName = this.address['first_name'];
+      this.lastName = this.address['last_name'];
+      this.sAddress = this.address['street_address'];
+      this.city = this.address['city'];
+      this.state = this.address['state'];
+      this.country = this.address['country'];
+      this.zipcode = this.address['zip'];
+      this.phone = this.address['phone'];	*/  
+      this.orderFiles = data;
+      this.order_tot_duration = data['tot_duration'];
+      this.order_tot_cost     = data['tot_cost'];
+    }else{      
+     //this._flashMessagesService.show('Your cart is empty', { cssClass: 'alert-danger' });
+      this.router.navigate(['price']);
+    }  
     },
     error => {
       this._flashMessagesService.show('Error in the Data/Server', { cssClass: 'alert-danger' });
     });
+  }else{
+    this.router.navigate(['price']);
+  }
   } 
   public savePaymentFun(mode){
     this.session_id = this.ApiService.getLocalSession('current_session_id');

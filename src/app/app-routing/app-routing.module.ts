@@ -49,6 +49,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, pathMatch: 'full'},
   { path: 'forgot-password', component: ForgotPasswordComponent, pathMatch: 'full'}, 
   { path: 'reset-password/:id', component: ResetPasswordComponent, pathMatch: 'full'},
+  { path: 'transcription-file', component: TranscriptionFileComponent, pathMatch: 'full'},
   { path: 'transcription-file/:sid/:sname', component: TranscriptionFileComponent, pathMatch: 'full'},
   { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard]},
   { path: 'payment-list', component: PaymentListComponent, canActivate: [AuthGuard]},
