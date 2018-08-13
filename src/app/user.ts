@@ -12,3 +12,15 @@ export class User {
       Object.assign(this, values);
   }
 }
+export class FreeTrial {
+  id: number;
+  email: string;
+  phone: string;
+  first_Name: string;
+  last_Name: string;    
+
+  constructor(values: Object = {}) {
+    //Constructor initialization
+    Object.assign(this, values);
+}
+}

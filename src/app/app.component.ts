@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   urlvalue: string;
   url: any;
   pageclass: string;
+  cartCount: any = {};
   public login: boolean;  
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
@@ -29,8 +30,20 @@ export class AppComponent implements OnInit {
     console.log('app' + this.router.url);
     this.urlvalue = '/';
     this.url = ['/', '/home', '/about'];
-
+    //
+    if (this.ApiService.getLocalSession('current_session_id') != null) {
+      this.ApiService.getCart(this.ApiService.getLocalSession('current_session_id'))
+      .subscribe(
+      data => {
+        console.log(data);
+        this.cartCount = data;
+        
+      });
+    }else{
+      this.cartCount['cart_count'] =0;
+    }
     
+    //
   }
   logouts(){
     

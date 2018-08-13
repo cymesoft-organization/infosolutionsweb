@@ -77,5 +77,11 @@ export class ApiService {
   addUrl(url, session_id, service_id, service_name){
     return this.http.post(this.appURL + 'addUrl', JSON.stringify({ url: url, session_id: session_id, service_id: service_id, service_name:service_name }));
   }
+  getCart(session_id){
+    return this.http.post(this.appURL + 'getCart', JSON.stringify({ session_id: session_id}));
+  }
+  requestFreeTrail(user){
+    return this.http.post(this.appURL + 'requestFreeTrail', JSON.stringify({ user: user}));
+  }
 
 }

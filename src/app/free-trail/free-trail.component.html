@@ -7,28 +7,54 @@
   <section class="contact-section freeTrail section-padding20">
       <div class="container">
           <div class="contact-wrapper">
-              <form role="form"  class="contact-form">
+                <form #f="ngForm" [formGroup]="freeTrailForm" (ngSubmit)="onFormSubmit()" autocomplete="off" class="contact-form" novalidate>
                   <div class="row">
                       <div class="col-sm-6 padding-right">
                           <div class="form-group">
-                              <input  name="full_name" type="text" class="form-control" required placeholder="Full Name">
+                                <input type="text" placeholder="first name"class="form-control" formControlName = "first_name">
+                                <div *ngIf="f.submitted || (first_name.invalid && first_name.touched)" class="col-sm-12 text-danger validation-error">
+                                      <div *ngIf = "first_name.errors?.required">
+                                         First name field can't be blank
+                                     </div>
+                                     
+                                </div>
                           </div>
                       </div>
 
                       <div class="col-sm-6 padding-left">
                           <div class="form-group">
-                              <input class="form-control" name="email" type="email" required placeholder="Email">
+                                <input type="text" formControlName = "email" class="form-control" placeholder="Email">
+                                <!-- Email error block -->
+                                <div *ngIf="f.submitted || (email.invalid && email.touched)" class="col-sm-12 text-danger validation-error">
+                                      <div *ngIf = "email.errors?.required">
+                                      Email field can't be blank
+                                      </div>
+                                      <div *ngIf = "email.errors?.pattern">
+                                      The email id doesn't seem right
+                                      </div>  
+                                  </div>
                           </div>
                       </div>
                     <div class="col-sm-6 padding-right">
                         <div class="form-group">
-                            <input  name="company" type="text" class="form-control" required placeholder="Company">
+                                <input type="text" placeholder="last name" class="form-control" formControlName = "last_name">
+                                <div *ngIf="f.submitted || (last_name.invalid && last_name.touched)" class="col-sm-12 text-danger validation-error">
+                                      <div *ngIf = "last_name.errors?.required">
+                                         Last name field can't be blank
+                                     </div>                               
+                                </div>
                         </div>
                     </div>
 
                     <div class="col-sm-6 padding-left">
                         <div class="form-group">
-                            <input class="form-control" name="phone_number" type="text" required placeholder="Phone Number">
+                                <input type="text"  formControlName = "phone" class="form-control" placeholder="Enter your mobile number">
+                                <!-- mobileNo error block -->
+                               <div *ngIf="f.submitted || (phone.invalid && phone.touched)" class="col-sm-12 text-danger validation-error">
+                                <div *ngIf = "phone.errors?.required">
+                                   Mobile number field can't be blank
+                               </div>
+                               </div>
                         </div>
                     </div>                
                   </div>

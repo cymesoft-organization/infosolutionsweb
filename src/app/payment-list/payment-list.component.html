@@ -33,29 +33,29 @@
 <div class="span8 unit">
 <div class="j-row">
   <div class="span6 unit">
-First Name : <span *ngIf="!firstName">--</span><span >{{firstName.length}}dd</span>
+First Name : {{address.first_name}}
   </div>
   <div class="span6 unit">
-Last Name : {{lastName}}
+Last Name : {{address.last_name}}
   </div>
 </div>
 <!-- STREET ADDRESS AND ZIP CODE -->
 
 <div class="j-row">
 <div class="span6 unit">  
-Address : {{sAddress}}  
+Address : {{address.street_address}}  
 </div>
 <div class="span6 unit">
-Zip Code : {{zipcode}}
+Zip Code : {{address.zip}}
 </div>
 </div>
 <!-- CITY AND COUNTRY -->
 <div class="j-row">
 <div class="span6 unit">
-City : {{city}}
+City : {{address.city}}
 </div>
 <div class="span6 unit">
-Country : {{country}}
+Country : {{address.country}}
 
 </div>
 </div>
@@ -63,10 +63,10 @@ Country : {{country}}
 <!-- start password -->
 <div class="j-row">
   <div class="span6 unit">
-State : {{state}}               
+State : {{address.state}}               
   </div>
   <div class="span6 unit">
-Mobile Number : {{phone}}
+Mobile Number : {{address.phone}}
 
 </div>
 </div>

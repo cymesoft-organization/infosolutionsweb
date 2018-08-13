@@ -13,6 +13,7 @@ import {Location} from '@angular/common';
   templateUrl: './transcription-file.component.html',
   styleUrls: ['./transcription-file.component.css']
 })
+
 export class TranscriptionFileComponent implements OnInit {
 
   step1: boolean;
@@ -53,6 +54,7 @@ export class TranscriptionFileComponent implements OnInit {
     private _flashMessagesService: FlashMessagesService, private _location: Location) {
     this.reset(); // set initial state
   }
+  
   
   ngOnInit() {
     

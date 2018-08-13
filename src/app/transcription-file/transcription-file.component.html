@@ -200,17 +200,27 @@
               </label>
               </div>
               <div class="selection" *ngIf="item.service_name == 'translation'">
+                  <div class="input select" >
+                      <label class="input select">
                   <select class="dropdown-select" #lang_form_id="ngModel" name="lang_form_id{{index}}" [(ngModel)]= "item.translate_from_id" #input (change)="updateLang(item.id, item.translate_from_id, 'translate_from_id')" >
                     <option *ngIf="item.translate_from_id == null"  [value]="null">--Select Translate From{{item.translate_from_id}}--</option> 
                     <option *ngFor="let lang_from of services.languages" [value]="lang_from.lang_id">{{lang_from.lang_name}}</option>
                      
                   </select>
+                  <i></i>
+                </label>
+                  </div>
+                  <div class="input select" >
+                      <label class="input select">
                   <select #lang_to_id="ngModel" name="lang_id{{index}}" [(ngModel)]= "item.translate_to_id" #input (change)="updateLang(item.id, item.translate_to_id, 'translate_to_id')" >
                     <option *ngIf="item.translate_to_id == null" [value]="null">--Select Translate To--</option>
                      
                     <option *ngFor="let lang_to of services.languages" [value]="lang_to.lang_id">{{lang_to.lang_name}}</option>
                       
                   </select>
+                  <i></i>
+                </label>
+                  </div>
               </div>
               <p>Est. Delivery Date(PST): {{item.ext_date}}</p>
             </div></td>
