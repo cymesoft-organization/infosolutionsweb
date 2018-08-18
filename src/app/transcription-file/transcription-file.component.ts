@@ -7,7 +7,32 @@ import { FormArray } from '@angular/forms/src/model';
 import { ApiService} from './../api.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {Location} from '@angular/common';
+import { GoogleAuthService } from 'ng-gapi';
+import { UserService } from '../UserService';
+import { GoogleApiService } from 'ng-gapi';
+import { SheetResource } from '../SheetResource';
+declare let Dropbox: any;
+//declare let DropboxChooseOptions: any;
+interface Dropbox {
+  choose(options: DropboxChooseOptions): void;
+}
+interface DropboxChooseOptions {
+    success(files: DropboxFile[]);
+    cancel?(): void;
+    linkType: "direct" | "preview";
+    multiselect: boolean;
+    extensions?: string[];
+    
+}
 
+interface DropboxFile {
+    name: string;
+    link: string;
+    bytes: number;
+    icon: string;
+    thumbnailLink?: string;
+    isDir: boolean;
+}
 @Component({
   selector: 'app-transcription-file',
   templateUrl: './transcription-file.component.html',
@@ -38,6 +63,15 @@ export class TranscriptionFileComponent implements OnInit {
   billing: any = {};
   address: any = {};
   disc: any = {};
+  options: DropboxChooseOptions;
+  dropboxval: any = {};
+  public sheetId: string;
+  public sheet: any;
+  public foundSheet: any;
+
+  dropBoxName: string;
+  dropBoxLink: string;
+  dropBoxBytes: string;
 
   readonly STATUS_INITIAL = 0;
   readonly STATUS_SAVING = 1;
@@ -51,10 +85,15 @@ export class TranscriptionFileComponent implements OnInit {
 
 
   constructor(private _svc: FileUploadService,private fb:FormBuilder, private router: Router, private route: ActivatedRoute, private ApiService: ApiService,
-    private _flashMessagesService: FlashMessagesService, private _location: Location) {
+    private _flashMessagesService: FlashMessagesService, private _location: Location, private userService: UserService,
+    private sheetResource: SheetResource,
+    private authService: GoogleAuthService,
+    private gapiService: GoogleApiService) {
     this.reset(); // set initial state
+    this.gapiService.onLoad().subscribe();
   }
   
+ 
   
   ngOnInit() {
     
@@ -68,7 +107,7 @@ export class TranscriptionFileComponent implements OnInit {
         this.sid = params.sid;
         this.sname = params.sname;
       }
-
+     //this.addDropboxScript();
     });
     
     this.step1 = true;
@@ -430,8 +469,18 @@ loginReg(){
 }
 
 addUrl(){
+  
+   const finalName = this.disc.url.substr(this.disc.url.lastIndexOf('/') + 1);  
+   this.dropboxval.dropBoxLink = this.disc.url;
+   this.dropboxval.dropBoxName = finalName; 
+   this.dropboxval.dropBoxBytes = 1;  
+  
+   this.urlService(this.dropboxval);
+  }
+
+urlService(url){
   let session_id = this.ApiService.getLocalSession('current_session_id');
-  this.ApiService.addUrl(this.disc.url, session_id, this.sid, this.sname)
+  this.ApiService.addUrl(url, session_id, this.sid, this.sname)
   .subscribe(
   data => {
     if(data['status'] == 'success'){       
@@ -448,4 +497,85 @@ addUrl(){
 }
   // End file upload
 
+  public isLoggedIn(): boolean {
+    return this.userService.isUserSignedIn();
+  }
+
+  public signIn() {
+      this.userService.signIn();
+      this.authService.getAuth().subscribe((auth) => {
+        if (auth.isSignedIn.get()) {
+          console.log(auth.currentUser.get().getBasicProfile())
+        }else {
+          auth.signIn().then((response) => {
+            console.log(response.getBasicProfile());
+          })
+        }
+
+     })
+  }
+
+  public create() {
+    this.sheetResource.create(this.userService.getToken())
+      .subscribe( res => this.sheet = res );
+  }
+
+  public findSheet() {    
+
+    this.sheetResource.findById('1gIycRJR4dQWSYtranBsH4IwKREXMYnROjC0FbZc603w', this.userService.getToken())
+      .subscribe( res=> this.foundSheet = res);
+  }
+
+ /* addDropboxScript() {
+//this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');    
+      scripttagElement.src = 'https://www.dropbox.com/static/api/2/dropins.js';
+      scripttagElement.id="dropboxjs";
+      scripttageElement.data-app-key="w4lazayb9losvo1";
+      scripttagElement.onload = resolve;
+      document.body.appendChild(scripttagElement);
+    })
+  } */
+ 
+  // TypeScript definitions
+  addDropboxUrl(){
+    this.urlService(this.dropboxval);
+  }
+  dropboxFileChoose(){
+    this.dropboxval = this.dropboxGetVal();
+    console.log( JSON.stringify(this.dropboxval));
+  }
+ dropboxGetVal(){
+    
+    this.options = {
+          success: function (files) {
+              
+               for (const file of files) {
+                      const name = file.name;
+                      const url = file.link;
+                      const bytes = file.bytes;
+                      //this.disc = { name: name, link: url };
+                      this.dropBoxName = name;
+                      this.dropBoxLink = url;
+                      this.dropBoxBytes = bytes;
+                      //console.log({ name: name, link: url });
+                      
+                  }
+                                   
+          },
+          cancel: function () {
+          },
+          linkType: "preview",
+          multiselect: false,
+          extensions: ['.pdf', '.doc', '.docx'],
+          
+          
+      }; 
+  
+      Dropbox.choose(this.options);
+      return this.options;  
+  
+  
+  }
 }

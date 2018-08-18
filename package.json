@@ -24,6 +24,7 @@
     "@angular/router": "^5.0.0",
     "angular2-flash-messages": "^2.0.5",
     "core-js": "^2.4.1",
+    "ng-gapi": "0.0.51",
     "rxjs": "^5.5.2",
     "save": "^2.3.2",
     "zone.js": "^0.8.14"

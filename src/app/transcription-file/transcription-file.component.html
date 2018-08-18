@@ -139,15 +139,46 @@
                     <div class="span4">
                         <div class="social-btn skype">
                             <i class="fab fa-dropbox"></i>
-                          <button type="button">Dropbox</button>
+                          <button (click)="dropboxFileChoose()" type="button">Dropbox</button>                          
                         </div>
-                      </div>>
+                        
+                      </div>
+                      <div class="span10 unit">
+                        <div class="input">
+                          <input type="text" disabled name="dropBoxLink" [(ngModel)]="dropboxval.dropBoxLink" #dropBoxLink="ngModel" placeholder="http://" />
+                        </div>
+                        </div>
+                        <div class="span2 unit"><button  class="primary-btn" (click)="addDropboxUrl()" type="submit">ADD URL</button></div>
+                      
                 </div>
                 <div class="tab-pane" id="4b">
                     <div class="span4">
                         <div class="social-btn google">
                             <i class="fab fa-google-drive"></i>
                           <button type="button">Google Drive</button>
+                          <button *ngIf='!isLoggedIn()' (click)="signIn()">sign in and create spreadsheet</button>
+                          <div *ngIf='isLoggedIn()'> 
+                            <p *ngIf='!sheet'>
+                              <button  (click)=create()>Create empty sheet</button>
+                            </p>
+                          
+                            <p *ngIf='sheet'>
+                                <span>sheetId {{sheet.spreadsheetId}}</span>
+                            </p>
+                          
+                            <p>
+                              <label>Spreadsheet id</label>
+                              <input type="text" [(ngModel)]=sheetId />
+                              <button (click)="findSheet()">fetch spreadsheet</button>
+                            </p>
+                          
+                            <p *ngIf="foundSheet">
+                              <code>
+                              {{foundSheet | json}}
+                              </code>
+                            </p> 
+                            
+                          </div>
                         </div>
                       </div>
                </div>
@@ -412,7 +443,7 @@
 
 <div class="unit padding-bottom-18">
   
-          <button type="submit" class="primary-btn">SUBMIT ORDER</button>
+          <button type="submit" class="primary-btn" *ngIf="orderFiles.files?.length!=0">SUBMIT ORDER</button>
 </div>
 </div>
 
@@ -420,8 +451,11 @@
 
     <div class="span5 unit">
      <h3 class="subtile">Order Summary</h3>
-
-     <div class="j-row">
+     <div *ngIf="orderFiles.files?.length ==0">
+     <h4>Cart empty</h4>  
+     <a class="primary-btn"  routerLink="/transcription-file">Add Files</a>
+    </div>
+     <div class="j-row" *ngIf="orderFiles.files?.length !=0">
       <div class="span12 unit">
         <table class="table">
           <tr>

@@ -12,6 +12,15 @@ import { FileUploadService } from './file-upload.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 
+import {
+  GoogleApiModule, 
+  GoogleApiService, 
+  GoogleAuthService, 
+  NgGapiClientConfig, 
+  NG_GAPI_CONFIG,
+  GoogleApiConfig
+} from "ng-gapi";
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -43,7 +52,21 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { FreeTrailComponent } from './free-trail/free-trail.component';
 import { OrderListComponent } from './order-list/order-list.component';
+import { UserService } from './UserService';
+import { SheetResource } from './SheetResource';
 
+
+let gapiClientConfig: NgGapiClientConfig = {
+  client_id: "168358760515-n5qdjukih6ef8mdj21jtb2p7bquop6q0.apps.googleusercontent.com",
+  discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"],
+  scope: [
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/spreadsheets.readonly"
+  ].join(" ")
+};
 
 @NgModule({
   declarations: [
@@ -82,8 +105,12 @@ import { OrderListComponent } from './order-list/order-list.component';
     HttpClientModule,     
     HttpModule,    
     FlashMessagesModule.forRoot(),
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
   ],
-  providers: [AuthGuard, ApiService, FileUploadService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthGuard, UserService, SheetResource, ApiService, FileUploadService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
